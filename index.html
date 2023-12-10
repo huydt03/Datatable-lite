@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Datatable</title>
+	<link rel="stylesheet" type="text/css" href="Datatable.css">
+	<script type="text/javascript" src="DatatableBase.js"></script>
+	<script type="text/javascript" src="Datatable.js"></script>
+</head>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>name</th>
+				<th>age</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+</body>
+</html>
+
+<script type="text/javascript">
+	
+	let target = document.getElementsByTagName('table')[0];
+	let columns = {'id':1, 'name':{searchable: 1}, 'age': 1};
+	let data = [];
+	for(let i = 1; i < 10000; i++){
+		data.push({
+			id: i,
+			name: (Math.random() + 1).toString(36).substring(7),
+			age: Math.round(Math.random() * 100)
+		})
+	}
+
+	let datatable = new DataTable(target, data, columns);
+	
+	console.log(datatable);
+</script>
