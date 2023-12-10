@@ -1,0 +1,40 @@
+*{
+	border-collapse: collapse;
+}		
+/*table*/
+table {
+     width: 100%;
+}
+table td, table th {
+     border: 1px solid #ddd;
+     padding: 8px;
+}
+table th{
+	padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
+table td {
+	cursor: pointer;
+}
+table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+table tbody {
+  display: block;
+  /*max-height: 100px;*/
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+table tbody tr{
+    width: calc(100% + 1em) !important;
+}
+
+table thead, table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
