@@ -4,19 +4,70 @@
 	<title>Datatable</title>
 	<link rel="stylesheet" type="text/css" href="Datatable.css">
 	<script type="text/javascript" src="DatatableBase.js"></script>
+	<script type="text/javascript" src="Pagination.js"></script>
 	<script type="text/javascript" src="Datatable.js"></script>
+	<style type="text/css">
+		th{
+			position: relative;
+		}
+		th .data-sort{
+			display: flex;
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		    height: 100%;
+		}
+		th .data-sort label{
+			height: 100%;
+		    font-size: 1.3em;
+		    display: flex;
+		    cursor: pointer;
+		    align-content: stretch;
+		    flex-direction: column;
+		    justify-content: space-around;
+		}
+		th .data-sort[desc="true"] label:nth-child(1), th .data-sort[desc="false"] label:nth-child(2){
+		    color: #068889;
+		    font-size: 1.7em;
+		}
+		th .sort[desc="true"] label:nth-child(2),  .sort[desc="false"] label:nth-child(1){
+		}
+
+		.pagination{
+			display: flex;
+		}
+		.pagination .page-item{
+		    padding: 5px;
+		    margin: 1px;
+		    cursor: pointer;
+		}
+		.pagination .active{
+			background: #88feff;
+		}
+	</style>
 </head>
 <body>
 
 	<table>
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>name</th>
-				<th>age</th>
+				<th sortable name="id">dfsdf</th>
+				<th sortable searchable name="name">fsd</th>
+				<th sortable name="age">sdfsdf</th>
 			</tr>
 		</thead>
 		<tbody></tbody>
+		<tfoot>
+			<tr>
+				<td>
+					<div class="pagination">
+						<div class="page-prev"><</div>
+						<div class="page-item">sfs</div>
+						<div class="page-next">></div>
+					</div>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
 
 </body>
@@ -25,17 +76,22 @@
 <script type="text/javascript">
 	
 	let target = document.getElementsByTagName('table')[0];
-	let columns = {'id':1, 'name':{searchable: 1}, 'age': 1};
+
+	let columns = DataTableHeader(target);
+
+	let pagination = TablePageination(target);
+
+	// let columns = {'id':1, 'name':{searchable: 1}, 'age': 1};
 	let data = [];
-	for(let i = 1; i < 10000; i++){
-		data.push({
-			id: i,
-			name: (Math.random() + 1).toString(36).substring(7),
-			age: Math.round(Math.random() * 100)
-		})
+	for(let i = 1; i < 1000; i++){
+		data.push([
+			i,
+			(Math.random() + 1).toString(36).substring(7),
+			Math.round(Math.random() * 100)
+		])
 	}
 
-	let datatable = new DataTable(target, data, columns);
+	let datatable = new DataTable(target, data, columns, pagination);
 	
 	console.log(datatable);
 </script>

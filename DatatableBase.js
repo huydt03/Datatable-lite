@@ -10,10 +10,13 @@ function DataTableBase(data, columns = {}, itemUpdateHandle = new Function){
 		let self = {data: {}, update};
 
 		function validate(data){
-			for(let i in columns){
-				data[i] = data[i] || '';
+			let _columns = Object.keys(columns);
+			let _data = {};
+			for(let i in _columns){
+				let key = _columns[i];
+				_data[key] = data[key] || data[i] || '';
 			}
-			self.data = data;
+			self.data = _data;
 		}
 
 		function update(data, is_extend = 1){
